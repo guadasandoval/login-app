@@ -59,7 +59,7 @@ export default function Home() {
   
 
   return (
-    <main className="flex min-h-screen flex-col items-row justify-between bg-white box-border">
+  <main className="flex min-h-screen flex-col items-row justify-between bg-white box-border">
   <div className="flex min-h-full flex-row justify-between">
     <div className="flex w-1/2 flex-col  justify-items-stretch">
     <header className="flex w-full flex-col justify-stretch">
@@ -109,7 +109,7 @@ export default function Home() {
             className="block w-full rounded-md border-0 py-1.5 pl-4 z-0 text-gray-900 bg-indigo-50 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  sm:text-sm sm:leading-6"/>
             {/* <Image src={eyepsw} alt="" width={10} className='z-10'></Image> */}
             </div>
-            <p className="text-center text-gray-500 text-sm mt-3">Debe tener al menos 8 caracteres.</p>
+            <p className="text-center text-gray-500 text-sm mt-3 md:max-sm">Debe tener al menos 8 caracteres.</p>
           </div>
         </div>
         
@@ -123,7 +123,7 @@ export default function Home() {
       </p>
     </div>
     </div>
-    <Image className="w-2/3" src={agente} alt="" width={845} ></Image>
+    <Image className="w-2/3 hidden lg:inline-block" src={agente} alt="" width={845} ></Image>
   </div>
 </main>
   )
