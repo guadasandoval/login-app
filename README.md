@@ -1,4 +1,4 @@
-![imagen](index.jpg)
+![imagen](index.png)
 
 # Flexy
 Página de registro de agentes inmobiliarios
