@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 
 export default function Home() {
+    const [selectedFile, setSelectedFile] = useState<any>('');
     const [formData, setFormData] = useState({
       fullName: '',
       phone:'',
@@ -22,10 +23,15 @@ export default function Home() {
         [e.target.name]: e.target.value,
       });
     };
-  
-    const handleSubmit = (e: any) => {
+    
+    const handleFileChange = (event : any) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+      };
+    
+      const handleSubmit = (e: any) => {
       e.preventDefault();
-      if (!formData.fullName || !formData.email || !formData.password || !formData.phone || !formData.urlProfileImg) {
+      if (!formData.fullName || !formData.email || !formData.password || !formData.phone) {
         alert('Por favor, completa todos los campos.');
         return;
       }
@@ -33,8 +39,25 @@ export default function Home() {
         alert('Por favor, ingresa un nombre y un correo electrónico válido.');
         return;
       }
+      if (selectedFile) {
+        const formDataObject = { 
+        fullName: '',
+        phone:'',
+        email: '',
+        urlProfileImg:'',
+        password:''};
+
+      formDataObject.fullName = formData.fullName;
+      formDataObject.phone = formData.phone;
+      formDataObject.email = formData.email;
+      formDataObject.urlProfileImg = selectedFile.name;
+      formDataObject.password = formData.password;
+      setFormData(formDataObject)
+      alert("Felicitaciones! Ya sos un agente Flexy")
+    }
     };
   
+
   return (
     <main className="flex min-h-screen flex-col items-row justify-between bg-white box-border">
   <div className="flex min-h-full flex-row justify-between">
@@ -53,10 +76,15 @@ export default function Home() {
       <form className="space-y-6" onSubmit={handleSubmit}> 
        <div className=" flex mt-5 items-center">
         <div className="flex justify-center items-center rounded-full bg-indigo-50 w-12 h-12">
-          <input type='file' className='opacity-0 z-0 absolute  cursor-pointer' required value={formData.urlProfileImg} onChange={handleChange}/>
+          <input type='file' className='opacity-0 z-0 absolute  cursor-pointer' onChange={handleFileChange}/>
           <Image className='opacity-50 z-50' src={loadImg} alt="" width={20}></Image>
         </div> 
-          <p className="text-gray-900 text-base ml-2">Subí tu foto de perfil</p>
+        {selectedFile ? (
+            <div>
+              <p>{selectedFile.name}</p>
+            </div>
+          ) : (<p className="text-gray-900 text-base ml-2">Subí tu foto de perfil</p>)
+          }
       </div>
         <div>
           <div className="mt-6">
