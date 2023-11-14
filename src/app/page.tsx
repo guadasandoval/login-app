@@ -25,7 +25,7 @@ export default function Home() {
   
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      if (!formData.fullName || !formData.email || !formData.password || !formData.phone) {
+      if (!formData.fullName || !formData.email || !formData.password || !formData.phone || !formData.urlProfileImg) {
         alert('Por favor, completa todos los campos.');
         return;
       }
@@ -53,7 +53,8 @@ export default function Home() {
       <form className="space-y-6" onSubmit={handleSubmit}> 
        <div className=" flex mt-5 items-center">
         <div className="flex justify-center items-center rounded-full bg-indigo-50 w-12 h-12">
-        <Image className='opacity-50' src={loadImg} alt="" width={20}></Image> 
+          <input type='file' className='opacity-0 z-0 absolute  cursor-pointer' required value={formData.urlProfileImg} onChange={handleChange}/>
+          <Image className='opacity-50 z-50' src={loadImg} alt="" width={20}></Image>
         </div> 
           <p className="text-gray-900 text-base ml-2">Subí tu foto de perfil</p>
       </div>
